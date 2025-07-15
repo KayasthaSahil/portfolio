@@ -29,13 +29,17 @@ import {
   Target
 } from 'lucide-react';
 
-import { portfolioData } from '../data/mock';
+import { usePortfolioData, useContactSubmission } from '../hooks/usePortfolio';
+import { LoadingSection, ErrorMessage, SkeletonGrid } from './Loading';
 import ProjectModal from './ProjectModal';
 import TypewriterEffect from './TypewriterEffect';
 import AnimatedSection from './AnimatedSection';
 import Navigation from './Navigation';
 
 const Portfolio = () => {
+  const { data: portfolioData, loading, error, refetch } = usePortfolioData();
+  const { submitContact, loading: contactLoading } = useContactSubmission();
+  
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -50,13 +54,22 @@ const Portfolio = () => {
     setIsModalOpen(true);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out! I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      await submitContact(formData);
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out! I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (e) => {
@@ -79,6 +92,39 @@ const Portfolio = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-white">
+        <Navigation />
+        <LoadingSection title="Loading portfolio..." />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-white">
+        <Navigation />
+        <ErrorMessage 
+          message={error} 
+          onRetry={refetch}
+        />
+      </div>
+    );
+  }
+
+  if (!portfolioData) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-white">
+        <Navigation />
+        <ErrorMessage 
+          message="No portfolio data available"
+          onRetry={refetch}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
