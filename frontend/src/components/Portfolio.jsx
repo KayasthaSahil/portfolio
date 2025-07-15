@@ -474,7 +474,7 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4 bg-gray-900/50">
+      <section id="contact" className="py-20 px-4 bg-gray-900/50">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
