@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Portfolio from "./components/Portfolio";
+import AdminDashboard from "./components/AdminDashboard";
 import { Toaster } from "./components/ui/toaster";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -30,9 +31,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
