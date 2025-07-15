@@ -33,6 +33,7 @@ import { portfolioData } from '../data/mock';
 import ProjectModal from './ProjectModal';
 import TypewriterEffect from './TypewriterEffect';
 import AnimatedSection from './AnimatedSection';
+import Navigation from './Navigation';
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -72,10 +73,19 @@ const Portfolio = () => {
     "Problem Solver"
   ];
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
+      <Navigation />
+      
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-gray-900 to-orange-900/20"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(27,156,252,0.1),transparent)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         
@@ -114,6 +124,7 @@ const Portfolio = () => {
               <Button 
                 size="lg" 
                 className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 shadow-lg shadow-teal-500/25"
+                onClick={() => scrollToSection('projects')}
               >
                 <Eye className="mr-2 h-5 w-5" />
                 View My Work
@@ -132,7 +143,7 @@ const Portfolio = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4">
+      <section id="about" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -190,7 +201,7 @@ const Portfolio = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 px-4 bg-gray-900/50">
+      <section id="skills" className="py-20 px-4 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -230,7 +241,7 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 px-4">
+      <section id="projects" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
