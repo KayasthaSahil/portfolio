@@ -648,10 +648,20 @@ const Portfolio = () => {
                     
                     <Button 
                       type="submit" 
-                      className="w-full bg-teal-500 hover:bg-teal-600 text-white"
+                      disabled={contactLoading}
+                      className="w-full bg-teal-500 hover:bg-teal-600 text-white disabled:opacity-50"
                     >
-                      <Send className="h-4 w-4 mr-2" />
-                      Send Message
+                      {contactLoading ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 mr-2" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
