@@ -300,7 +300,7 @@ const Portfolio = () => {
       </section>
 
       {/* Experience Section */}
-      <section className="py-20 px-4 bg-gray-900/50">
+      <section id="experience" className="py-20 px-4 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
