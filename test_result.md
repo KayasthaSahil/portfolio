@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the complete portfolio application functionality including portfolio loading, navigation, interactive elements, contact form, admin dashboard, responsive design, and backend integration"
+user_problem_statement: "Fix the issues in this portfolio and make it properly working with enhanced UI"
 
 frontend:
   - task: "Portfolio Data Loading"
