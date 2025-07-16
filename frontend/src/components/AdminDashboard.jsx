@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { portfolioService } from '../services/api';
 import { LoadingSection, ErrorMessage } from './Loading';
-import { Mail, Clock, User, Eye } from 'lucide-react';
+import { Mail, Clock, User, Eye, ArrowLeft, Home, RefreshCw, MessageSquare, TrendingUp, Users, Activity, Filter } from 'lucide-react';
 
 const AdminDashboard = () => {
   const [submissions, setSubmissions] = useState([]);
